@@ -25,7 +25,7 @@ jobs:
             # Escape newlines and quotes for JSON
             DIFF=$(git diff --name-only HEAD~1)
             SAFE_DIFF=$(jq -Rs . <<< "$DIFF")
-            echo "Diff to review: $DIFF"
+            echo "Diff to review: $SAFE_DIFF"
 
 
             # Submit for review and wait for approval
