@@ -21,7 +21,7 @@ jobs:
           fi
 
           if [ -n "$DIFF" ]; then
-            echo "🔍 Submitting changes for review..."
+            echo "🔍 Submitting changes for review..." 
             # Escape newlines and quotes for JSON
             SAFE_DIFF=$(echo "$DIFF" | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read()))')
 
