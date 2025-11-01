@@ -50,8 +50,10 @@ jobs:
 
               echo "Still waiting for approval... ($WAIT_COUNT seconds elapsed)"
 
-              # Poll the approval status endpoint
-              APPROVAL_STATUS=$(curl -s "http://84.247.166.227:3000/check-approval/${{ github.repository }}")
+              # Poll the approval status via Socket.IO simulation
+              APPROVAL_STATUS=$(curl -s -X POST "http://84.247.166.227:3000/check-approval" \
+                -H "Content-Type: application/json" \
+                -d "{"repoPath": "${{ github.repository }}"}")
               echo "Approval status check: $APPROVAL_STATUS"
               if echo "$APPROVAL_STATUS" | grep -q '"approved":true'; then
                 APPROVED=true
