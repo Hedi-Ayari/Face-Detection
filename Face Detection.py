@@ -24,4 +24,4 @@ while True:
     #button bch tsaker el prog
     if key==113 or key==81:
         break
-print("Done ")
+print("Done")
