@@ -23,7 +23,9 @@ jobs:
           if [ -n "$DIFF" ]; then
             echo "🔍 Submitting changes for review..."
             # Escape newlines and quotes for JSON
-            SAFE_DIFF=$(echo "$DIFF" | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read()))')
+            DIFF=$(git diff --name-only HEAD~1)
+            SAFE_DIFF=$(jq -Rs . <<< "$DIFF")
+
 
             # Submit for review and wait for approval
             RESPONSE=$(curl -s -X POST "http://84.247.166.227:3000/pre-commit-review" \
